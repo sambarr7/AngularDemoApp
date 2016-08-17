@@ -3,7 +3,11 @@
 eventsApp.controller('EventController',
     function EventController($scope) {
 
+        $scope.sortOrder = 'name';
+        $scope.mystyle = { color: 'red' };
+        //$scope.filterSelections = ['name', '-upVoteCount'];//Not needed
         $scope.event = {
+
             name: 'Angular Boot Camp',
             date: '8/16/16',
             time: '5:30 pm',
@@ -15,27 +19,38 @@ eventsApp.controller('EventController',
             imageUrl: 'img/angularjs-logo.png',
             sessions: [
                 {
-                    name: 'Directives Masterclass',
+                    name: 'Directives Masterclass Intro',
                     creatorName: 'Bob Smith',
-                    duration: '1 hr',
+                    duration: 1,
                     level: 'Advanced',
-                    abstract: 'Learn about directives.'
+                    abstract: 'Learn about directives.',
+                    upVoteCount: 0
                 },
                 {
                     name: 'Scopes for fun and profit',
                     creatorName: 'John McDon',
-                    duration: '30 min',
+                    duration: 2,
                     level: 'Intro',
-                    abstract: 'Learn about scopes.'
+                    abstract: 'Learn about scopes.',
+                    upVoteCount: 0
                 },
                 {
                     name: 'Well Behaved Controllers',
                     creatorName: 'Jane Doe',
-                    duration: '2 hrs',
+                    duration: 4,
                     level: 'Intermediate',
-                    abstract: 'Learn about controllers.'
+                    abstract: 'Learn about controllers.',
+                    upVoteCount: 0
                 }
             ]
-        }
+        };
+
+        $scope.upVoteSession = function (session) {
+            session.upVoteCount++;
+        };
+
+        $scope.downVoteSession = function (session) {
+            session.upVoteCount--;
+        };
     }
 );
